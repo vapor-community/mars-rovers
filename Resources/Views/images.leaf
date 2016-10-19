@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <title>Rovers</title>
+        <style>
+            body {
+                padding: 0;
+                margin: 0;
+                background: black;
+            }
+
+            .nav {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.5);
+                -webkit-backdrop-filter: blur(20px);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 12px;
+            }
+
+            .nav form {
+                margin: 0;
+            }
+
+            .images {
+                overflow-x: scroll;
+                height: 100%;
+                width: 100%;
+                display: flex;
+            }
+
+            .images img {
+                height: 100%;
+                flex-shrink: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="nav">
+            <form action="/" method="get">
+                <select name="rover">
+                    <option disabled>Rover</option>
+                    <option value="curiosity" #equal(rover, "curiosity") { selected } >Curiosity [C]</option>
+                    <option value="opportunity" #equal(rover, "opportunity") { selected } >Opportunity [O]</option>
+                    <option value="spirit" #equal(rover, "spirit") { selected } >Spirit [S]</option>
+                </select>
+
+                <select name="camera">
+                    <option disabled>Camera</option>
+                    <option value="FHAZ" #equal(camera, "FHAZ") { selected } >Front Hazard Avoidance [C][O][S]</option>
+                    <option value="RHAZ" #equal(camera, "RHAZ") { selected } >Rear Hazard Avoidance [C][O][S]</option>
+                    <option value="MAST" #equal(camera, "MAST") { selected } >Mast [C]</option>
+                    <option value="CHEMCAM" #equal(camera, "CHEMCAM") { selected } >Chemistry Complex [C]</option>
+                    <option value="MAHLI" #equal(camera, "MAHLI") { selected } >Mars Hand Lens [C]</option>
+                    <option value="MARDI" #equal(camera, "MARDI") { selected } >Mars Descent [C]</option>
+                    <option value="NAVCAM" #equal(camera, "NAVCAM") { selected } >Navigation [C][O][S]</option>
+                    <option value="PANCAM" #equal(camera, "PANCAM") { selected } >Panoramic [O] [S]</option>
+                    <option value="MINTIES" #equal(camera, "MINTIES") { selected } >Miniature Thermal Emission Spectrometer [O] [S]</option>
+                </select>
+
+                <input name="sol" placeholder="Sol" value="#(sol)">
+
+                <button type="submit">Explore</button>
+            </form>
+        </div>
+        <div class="images">
+            #loop(images, "image") {
+                <img src="#(image)">
+            }
+        </div>
+    </body>
+</html>
